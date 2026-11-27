@@ -1,0 +1,8 @@
+{
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": [
+    "assets/css/fontawesome-all.min.css",
+    "assets/css/main.css",
+    "assets/css/noscript.css"
+  ]
+}

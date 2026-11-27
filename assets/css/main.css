@@ -1,12 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic");
 
-/*
-	Solid State by Pixelarity
-	pixelarity.com | hello@pixelarity.com
-	License: pixelarity.com/license
-*/
-
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -3398,12 +3392,6 @@ input, select, textarea {
 			opacity: 1;
 			margin: 0 0 1.3em 0;
 		}
-
-			#banner .logo img {
-				display: block;
-				max-width: 100%;
-				height: auto;
-			}
 
 			#banner .logo .icon {
 				border-radius: 100%;

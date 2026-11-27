@@ -1,0 +1,85 @@
+name: Quality Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Validate HTML
+        run: npm run lint:html
+
+      - name: Lint CSS
+        run: npm run lint:css
+
+      - name: Spell Check
+        run: npm run spellcheck
+
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Audit homepage and detail pages
+        shell: bash
+        run: |
+          # Stage the pages and their assets so discovery skips the template demos.
+          site_dir="$RUNNER_TEMP/florigon-lighthouse-site"
+          mkdir -p "$site_dir"
+          cp -R index.html pages assets images "$site_dir/"
+
+          cat > "$RUNNER_TEMP/lighthouserc.json" <<'JSON'
+          {
+            "ci": {
+              "collect": {
+                "numberOfRuns": 1,
+                "maxAutodiscoverUrls": 0
+              },
+              "assert": {
+                "assertions": {
+                  "categories:accessibility": ["warn", { "minScore": 0.9 }]
+                }
+              },
+              "upload": {
+                "target": "filesystem"
+              }
+            }
+          }
+          JSON
+
+          npm exec --yes --package=@lhci/cli@0.16.1 -- lhci autorun \
+            --config="$RUNNER_TEMP/lighthouserc.json" \
+            --collect.staticDistDir="$site_dir" \
+            --upload.outputDir="$RUNNER_TEMP/florigon-lighthouse-reports" \
+            --failOnUploadFailure
+
+      - name: Save Lighthouse reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: ${{ runner.temp }}/florigon-lighthouse-reports/

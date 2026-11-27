@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Azure",
+    "CSS",
+    "Florigon",
+    "GitHub",
+    "HTML",
+    "StaticWebApps"
+    ],
+  "ignorePaths": [
+    "node_modules",
+    ".git"
+  ]
+}

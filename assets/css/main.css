@@ -3399,6 +3399,12 @@ input, select, textarea {
 			margin: 0 0 1.3em 0;
 		}
 
+			#banner .logo img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+			}
+
 			#banner .logo .icon {
 				border-radius: 100%;
 				border: solid 2px rgba(255, 255, 255, 0.125);

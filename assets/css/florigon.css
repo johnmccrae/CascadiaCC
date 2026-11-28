@@ -3,3 +3,43 @@
 	max-width: 100%;
 	height: auto;
 }
+
+.skip-link {
+	position: fixed;
+	z-index: 10001;
+	inset-block-start: 1rem;
+	inset-inline-start: 1rem;
+	padding: 0.5rem 1rem;
+	background: #222;
+	color: #fff;
+}
+
+.skip-link:not(:focus) {
+	clip-path: inset(50%);
+}
+
+:is(a, button, input, textarea, select, main):focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 2px;
+}
+
+#wrapper {
+	scroll-margin-top: 4rem;
+}
+
+#menu[hidden] {
+	display: none;
+}
+
+#menu .inner {
+	max-height: 100%;
+	overflow: auto;
+}
+
+#menu .close:focus-visible {
+	outline-offset: -4px;
+}
+
+#footer section[aria-labelledby="accessibility-heading"] {
+	margin-top: 1.5rem;
+}

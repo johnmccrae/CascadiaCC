@@ -3,7 +3,7 @@
 	<head>
 		<title>Florigon Technology Consulting</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="assets/css/main.css">
 		<link rel="stylesheet" href="assets/css/florigon.css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
@@ -12,17 +12,18 @@
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
+				<a class="skip-link" href="#wrapper">Skip to main content</a>
 
 				<!-- Header -->
 					<header id="header" class="alt">
 						<h1><a href="index.html">Florigon Technology Consulting</a></h1>
 						<nav aria-label="Header">
-							<a href="#menu">Menu</a>
+							<a href="#menu" aria-controls="menu" aria-expanded="false" aria-haspopup="dialog">Menu</a>
 						</nav>
 					</header>
 
 				<!-- Menu -->
-					<nav id="menu" aria-labelledby="menu-heading">
+					<div id="menu" role="dialog" aria-modal="true" hidden aria-labelledby="menu-heading">
 						<div class="inner">
 							<h2 id="menu-heading">Menu</h2>
 							<ul class="links">
@@ -35,7 +36,7 @@
 							</ul>
 							<a href="#" class="close">Close</a>
 						</div>
-					</nav>
+					</div>
 
 				<!-- Banner -->
 					<section id="banner">
@@ -47,7 +48,7 @@
 					</section>
 
 				<!-- Wrapper -->
-					<section id="wrapper">
+					<main id="wrapper" tabindex="-1">
 
 						<!-- One -->
 							<section id="one" class="wrapper spotlight style1">
@@ -156,7 +157,7 @@
 								</div>
 							</section>
 
-					</section>
+					</main>
 
 				<!-- Footer -->
 					<section id="footer">
@@ -167,11 +168,11 @@
 								<div class="fields">
 									<div class="field">
 										<label for="name">Name</label>
-										<input type="text" name="name" id="name">
+										<input type="text" name="name" id="name" autocomplete="name">
 									</div>
 									<div class="field">
 										<label for="email">Email</label>
-										<input type="email" name="email" id="email">
+										<input type="email" name="email" id="email" autocomplete="email">
 									</div>
 									<div class="field">
 										<label for="message">Message</label>
@@ -188,12 +189,16 @@
 									1302 SE Morgan Road<br>
 									Hillsboro, OR 97123<br>
 								</li>
-								<li class="icon solid fa-phone">(425) 445-0294</li>
-								<li class="icon solid fa-envelope"><a href="#">information@florigon.com</a></li>
+								<li class="icon solid fa-phone"><a href="tel:+14254450294">(425)&nbsp;445&#8209;0294</a></li>
+								<li class="icon solid fa-envelope"><a href="mailto:information@florigon.com">information@florigon.com</a></li>
 								<!-- <li class="icon brands fa-twitter"><a href="#">twitter.com/Florigon</a></li>
 								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/Florigon</a></li>
 								<li class="icon brands fa-instagram"><a href="#">instagram.com/Florigon</a></li> -->
 							</ul>
+							<section aria-labelledby="accessibility-heading">
+								<h3 id="accessibility-heading">Accessibility</h3>
+								<p>Florigon Technology Consulting aims to meet the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA. If you have trouble using our website or contacting us through the form, please email <a href="mailto:information@florigon.com">information@florigon.com</a> or call <a href="tel:+14254450294">(425)&nbsp;445&#8209;0294</a>. Let us know which page or feature gave you trouble so we can help.</p>
+							</section>
 							<ul class="copyright">
 								<li>&copy; Florigon Technology Consulting. All rights reserved.</li>
 							</ul>

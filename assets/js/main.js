@@ -37,103 +37,53 @@
 		}
 
 	// Menu.
-		var $menu = $('#menu');
+		var $menu = $('#menu').appendTo($body);
+		var $trigger = $header.find('a[href="#menu"]');
+		var $page = $('#page-wrapper');
+		var $links = $menu.find('a[href]');
 
-		$menu._locked = false;
+		function closeMenu() {
+			$page.prop('inert', false);
+			$trigger.attr('aria-expanded', 'false').trigger('focus');
+			$menu.prop('hidden', true);
+			$body.removeClass('is-menu-visible');
+		}
 
-		$menu._lock = function() {
+		$trigger.on('click', function(event) {
+			event.preventDefault();
+			$body.addClass('is-menu-visible');
+			$menu.prop('hidden', false);
+			$trigger.attr('aria-expanded', 'true');
+			$links.first().trigger('focus');
+			$page.prop('inert', true);
+		});
 
-			if ($menu._locked)
-				return false;
-
-			$menu._locked = true;
-
-			window.setTimeout(function() {
-				$menu._locked = false;
-			}, 350);
-
-			return true;
-
-		};
-
-		$menu._show = function() {
-
-			if ($menu._lock())
-				$body.addClass('is-menu-visible');
-
-		};
-
-		$menu._hide = function() {
-
-			if ($menu._lock())
-				$body.removeClass('is-menu-visible');
-
-		};
-
-		$menu._toggle = function() {
-
-			if ($menu._lock())
-				$body.toggleClass('is-menu-visible');
-
-		};
-
-		$menu
-			.appendTo($body)
-			.on('click', function(event) {
-
-				event.stopPropagation();
-
-				// Hide.
-					$menu._hide();
-
-			})
-			.find('.inner')
-				.on('click', '.close', function(event) {
-
-					event.preventDefault();
-					event.stopPropagation();
-					event.stopImmediatePropagation();
-
-					// Hide.
-						$menu._hide();
-
-				})
-				.on('click', function(event) {
-					event.stopPropagation();
-				})
-				.on('click', 'a', function(event) {
-
-					var href = $(this).attr('href');
-
-					event.preventDefault();
-					event.stopPropagation();
-
-					// Hide.
-						$menu._hide();
-
-					// Redirect.
-						window.setTimeout(function() {
-							window.location.href = href;
-						}, 350);
-
-				});
-
-		$body
-			.on('click', 'a[href="#menu"]', function(event) {
-
-				event.stopPropagation();
+		$menu.on('click', function(event) {
+			if (event.target === this)
+				closeMenu();
+		}).on('click', 'a[href]', function(event) {
+			if ($(this).hasClass('close'))
 				event.preventDefault();
 
-				// Toggle.
-					$menu._toggle();
+			closeMenu();
+		}).on('keydown', function(event) {
+			if (event.key === 'Escape') {
+				event.preventDefault();
+				closeMenu();
+			}
 
-			})
-			.on('keydown', function(event) {
+			if (event.key === 'Tab') {
+				var first = $links[0];
+				var last = $links[$links.length - 1];
 
-				// Hide on escape.
-					if (event.keyCode == 27)
-						$menu._hide();
-
-			});
+				if (event.shiftKey && event.target === first) {
+					event.preventDefault();
+					last.focus();
+				} else if (!event.shiftKey && event.target === last) {
+					event.preventDefault();
+					first.focus();
+				}
+			}
+		});
 
 })(jQuery);

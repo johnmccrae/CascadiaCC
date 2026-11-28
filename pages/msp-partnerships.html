@@ -3,25 +3,27 @@
 	<head>
 		<title>A Trusted Partner for Other MSPs | Florigon Technology Consulting</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../assets/css/main.css">
+		<link rel="stylesheet" href="../assets/css/florigon.css">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css"></noscript>
 	</head>
 	<body class="is-preload">
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
+				<a class="skip-link" href="#wrapper">Skip to main content</a>
 
 				<!-- Header -->
 					<header id="header">
 						<h1><a href="../index.html">Florigon Technology Consulting</a></h1>
 						<nav aria-label="Header">
-							<a href="#menu">Menu</a>
+							<a href="#menu" aria-controls="menu" aria-expanded="false" aria-haspopup="dialog">Menu</a>
 						</nav>
 					</header>
 
 				<!-- Menu -->
-					<nav id="menu" aria-labelledby="menu-heading">
+					<div id="menu" role="dialog" aria-modal="true" hidden aria-labelledby="menu-heading">
 						<div class="inner">
 							<h2 id="menu-heading">Menu</h2>
 							<ul class="links">
@@ -34,10 +36,10 @@
 							</ul>
 							<a href="#" class="close">Close</a>
 						</div>
-					</nav>
+					</div>
 
 				<!-- Wrapper -->
-					<section id="wrapper">
+					<main id="wrapper" tabindex="-1">
 						<header>
 							<div class="inner">
 								<h2>A Trusted Partner for Other MSPs</h2>
@@ -62,7 +64,7 @@
 								</div>
 							</div>
 
-					</section>
+					</main>
 
 				<!-- Footer -->
 					<section id="footer">
